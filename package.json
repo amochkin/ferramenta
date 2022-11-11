@@ -4,16 +4,22 @@
 	"description": "NodeJS/Typescript collection of utility functions",
 	"license": "MIT",
 	"bin": {
-		"get-json-value": "dist/bin/get-json-value.js",
-		"set-json-value": "dist/bin/set-json-value.js"
+		"get-json-value": "dist/cjs/bin/get-json-value.js",
+		"set-json-value": "dist/cjs/bin/set-json-value.js"
 	},
 	"scripts": {
-		"build": "npm run clean && tsc -p tsconfig.json && chmod -R +x dist/bin/*.js",
+		"build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:types",
+		"build:cjs": "tsc -p configs/tsconfig.cjs.json && chmod -R +x dist/cjs/bin/*.js",
+		"build:esm": "tsc -p configs/tsconfig.esm.json",
+		"build:types": "tsc -p configs/tsconfig.types.json",
 		"clean": "rimraf dist",
 		"prepare": "husky install",
 		"test": "jest --no-cache --runInBand",
 		"test:cov": "jest --coverage --no-cache --runInBand"
 	},
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/types/index.d.js",
 	"devDependencies": {
 		"@types/jest": "^29.2.2",
 		"@typescript-eslint/eslint-plugin": "^5.42.1",
