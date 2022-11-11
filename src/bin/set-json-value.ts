@@ -2,21 +2,6 @@
 
 /**
  * This script will parse json file and return value of the property defined by path separated by '.'
- * Usage: set-json-value.js <filename> <path> <value> [options[,options]]
- *   filename: any JSON file, example: package.json
- *   path: path within JSON, example: parent.child.value
- *   value: any value, can be string, number or object, example:
- *     string - example: 'test'
- *     number - example: 1 or '1' or 1.2345 or '1.2345'
- *     object - example: '{"a":1,"b":"2"}'
- *   options, example: tabs,number
- *     tabs - format output JSON with tabs, otherwise output will be a string JSON without formatting
- *     number - convert value to number (if fails value will be string)
- *     object - convert value to object (if fails value will be string)
- *     boolean - convert value to boolean, only 'true' or '1' converts to true
- *     delete - removes value and its key, provided value argument is ignored and can be anything
- *     null - sets null as value, provided value argument is ignored and can be anything
- * Example: set-json-value.js package.json version 1.2.3 tabs
  */
 
 import * as fs from 'fs';
@@ -36,11 +21,14 @@ Usage: set-json-value.js <filename> <path> <value> [options[,options]]
     object - example: '{"a":1,"b":"2"}'
   options, example: tabs,number
     tabs - format output JSON with tabs, otherwise output will be a string JSON without formatting
-    number - convert value to number (if fails value will be string)
-    object - convert value to object (if fails value will be string)
+    no-except - if conversion fails, do not exit with error, just use string value
+    number - convert value to number (by default, if fails exit with error)
+    object - convert value to object (by default, if fails exit with error)
     boolean - convert value to boolean, only 'true' or '1' converts to true
     delete - removes value and its key, provided value argument is ignored and can be anything
-    null - sets null as value, provided value argument is ignored and can be anything`);
+    null - sets null as value, provided value argument is ignored and can be anything
+
+Example: set-json-value.js package.json version 1.2.3 tabs`);
 	process.exit(1);
 }
 
@@ -57,6 +45,7 @@ const json = setValueByPath(
 	castValueToType(
 		jsonValue,
 		jsonOpts.find((f) => isValidType(f)),
+		jsonOpts.includes('no-except'),
 	),
 );
 

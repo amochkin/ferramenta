@@ -2,7 +2,6 @@
 
 /**
  * This script will parse json file and return value of the property defined by path separated by '.'
- * Usage: get-json-value <filename> <path>
  * Example: get-json-value package.json version
  */
 
@@ -13,7 +12,9 @@ const args = process.argv.slice(2);
 
 if (args.length == 0) {
 	console.log(`
-Usage: get-json-value <filename> <path>`);
+Usage: get-json-value <filename> <path>
+
+Example: get-json-value package.json version`);
 	process.exit(1);
 }
 

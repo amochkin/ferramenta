@@ -29,11 +29,14 @@ export const stringToValidTypeString = (type: string): string => {
  * @param value String value to cast
  * @param type Type to cast to as string of 'number', 'boolean', 'object', 'string', 'null', 'delete', 'undefined'
  */
-export const castValueToType = (value: string, type: TypeOfValidTypes): ValidTypes => {
+export const castValueToType = (value: string, type: TypeOfValidTypes, noExceptions = false): ValidTypes => {
 	switch (type) {
 		case 'number':
 			const number = Number(value);
-			if (isNaN(number)) throw new Error(`Value '${value}' is not a number`);
+			if (isNaN(number)) {
+				if (noExceptions) return value;
+				else throw new Error(`Value '${value}' is not a number`);
+			}
 			return number;
 		case 'boolean':
 			return value === 'true' || value === '1';
@@ -41,7 +44,8 @@ export const castValueToType = (value: string, type: TypeOfValidTypes): ValidTyp
 			try {
 				return JSON.parse(value);
 			} catch (err) {
-				throw new Error(`Value '${value}' is not a valid JSON object (${err})`);
+				if (noExceptions) return value;
+				else throw new Error(`Value '${value}' is not a valid JSON object (${err})`);
 			}
 		case 'string':
 		case undefined:

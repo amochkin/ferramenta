@@ -8,6 +8,10 @@ test('castvaluetotype:number-invalid', () => {
 	expect(() => castValueToType('2-1', 'number')).toThrow();
 });
 
+test('castvaluetotype:number-invalid-no-except', () => {
+	expect(castValueToType('2-1', 'number', true)).toBe('2-1');
+});
+
 test('castvaluetotype:boolean-as-string', () => {
 	expect(castValueToType('true', 'boolean')).toBe(true);
 });
@@ -34,4 +38,8 @@ test('castvaluetotype:object', () => {
 
 test('castvaluetotype:object-invalid', () => {
 	expect(() => castValueToType('{1: a}', 'object')).toThrow();
+});
+
+test('castvaluetotype:object-invalid-no-except', () => {
+	expect(castValueToType('{1: a}', 'object', true)).toBe('{1: a}');
 });
