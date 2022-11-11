@@ -61,7 +61,6 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@xorde-labs'
-      - run: npm run build:addscope
       - name: Publish to GitHub Packages
         run: npm publish
         env:
