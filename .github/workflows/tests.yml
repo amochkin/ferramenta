@@ -28,7 +28,6 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - alpine-latest
           - windows-latest
         node: [14.x, 16.x, 18.x]
 
