@@ -1,0 +1,10 @@
+.github
+.husky
+.idea
+.vscode
+configs
+src
+tests
+scripts
+jest.config.ts
+tsconfig.json
