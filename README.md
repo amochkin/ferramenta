@@ -89,11 +89,16 @@ Arguments:
 - filename: any JSON file, example: `package.json`
 - path: a property key path within JSON file, example: `parent.child.value`
 
-Example:
+Examples:
 
 ```shell
+# package.json contains: {"version":"1.0.0"}
 % get-json-value package.json version
 > 1.0.0
+
+# package.json contains: {"scripts":{"build":"build-script"}}
+% get-json-value package.json scripts.build
+> npm run build-script
 ```
 
 ### set-json-value
@@ -118,5 +123,8 @@ Example:
 
 ```shell
 % set-json-value.js package.json version 1.2.3 tabs
+> Complete
+
+% set-json-value.js package.json scripts.test 'jest --no-cache' tabs
 > Complete
 ```
