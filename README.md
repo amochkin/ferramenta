@@ -96,7 +96,7 @@ Examples:
 % get-json-value package.json version
 > 1.0.0
 
-# package.json contains: {"scripts":{"build":"build-script"}}
+# package.json contains: {"scripts":{"build":"npm run build-script"}}
 % get-json-value package.json scripts.build
 > npm run build-script
 ```
