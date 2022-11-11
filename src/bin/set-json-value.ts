@@ -10,7 +10,7 @@ import { setValueByPath } from '../jsonValueByPath';
 
 const args = process.argv.slice(2);
 
-if (args.length == 0) {
+if (args.length === 0) {
 	console.log(`
 Usage: set-json-value.js <filename> <path> <value> [options[,options]]
   filename: any JSON file, example: package.json

@@ -32,12 +32,10 @@ export const stringToValidTypeString = (type: string): string => {
 export const castValueToType = (value: string, type: TypeOfValidTypes, noExceptions = false): ValidTypes => {
 	switch (type) {
 		case 'number':
-			const number = Number(value);
-			if (isNaN(number)) {
+			if (isNaN(Number(value))) {
 				if (noExceptions) return value;
 				else throw new Error(`Value '${value}' is not a number`);
-			}
-			return number;
+			} else return Number(value);
 		case 'boolean':
 			return value === 'true' || value === '1';
 		case 'object':

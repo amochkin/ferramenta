@@ -10,7 +10,7 @@ import { getValueByPath } from '../jsonValueByPath';
 
 const args = process.argv.slice(2);
 
-if (args.length == 0) {
+if (args.length === 0) {
 	console.log(`
 Usage: get-json-value <filename> <path>
 
@@ -24,4 +24,4 @@ const jsonPaths = args[1].split('.');
 const json = JSON.parse(fs.readFileSync(jsonFilename).toString());
 const value = getValueByPath(json, jsonPaths);
 
-value && console.log(typeof value != 'object' ? value : JSON.stringify(value));
+value && console.log(typeof value !== 'object' ? value : JSON.stringify(value));
