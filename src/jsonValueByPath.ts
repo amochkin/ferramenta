@@ -1,8 +1,8 @@
 /**
- * Returns value of an object property by path defined as array of strings, parent element comes first.
- * Example: getValueByPath({parent: {value: 1}}, ['parent', 'value']) // returns value 1
- * @param obj
- * @param paths
+ * Returns a value of an object property by path defined as array of strings, parent element comes first.
+ * Example: getValueByPath({parent: {value: 1}}, ['parent', 'value']); // returns value 1
+ * @param obj Object to get value from
+ * @param paths An array of strings, parent element comes first
  */
 export const getValueByPath = (obj: any, paths: string[]): any => {
 	const path = paths[0];
@@ -16,11 +16,11 @@ export const getValueByPath = (obj: any, paths: string[]): any => {
 type ValidValueType = object | string | number | boolean | null | undefined;
 
 /**
- * Returns value of json object property by path defined as array of strings, where parent element comes first.
- * Example: getValueByPath({parent: {value: 1}}, ['parent', 'value']) // returns value 1
- * @param {object} obj
- * @param {string[]} paths
- * @param {any} value
+ * Modifies object in place by setting a value for a property by path defined as array of strings, parent element comes first.
+ * Example: setValueByPath({parent: {value: 1}}, ['parent', 'value'], 2); // returns object {parent: {value: 2}}
+ * @param obj Object to set value in
+ * @param paths An array of strings, parent element comes first
+ * @param value Value to set
  */
 export const setValueByPath = (obj: any, paths: string[], value: ValidValueType) => {
 	const path = paths[0];

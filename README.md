@@ -4,7 +4,7 @@
 [![Tests](https://github.com/xorde-labs/ferramenta/actions/workflows/tests.yml/badge.svg)](https://github.com/xorde-labs/ferramenta/actions/workflows/tests.yml)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
 
-NodeJS/Typescript collections of utility functions
+NodeJS/Typescript library of utility functions, and their CLI wrappers.
 
 ## Installation
 
@@ -20,32 +20,61 @@ yarn add @xorde-labs/ferramenta
 
 ### Function `getValueByPath`
 
-<TODO>
+Returns a value of an object property by path defined as array of strings, parent element comes first.
+
+Arguments:
+- obj: any - Object to get value from;
+- path: string[] - An array of strings, parent element comes first;
 
 Example:
 
 ```typescript
-// TODO
+getValueByPath({parent: {value: 1}}, ['parent', 'value']);
+// returns value 1
 ```
 
 ### Function `setValueByPath`
 
-<TODO>
+Modifies object in place by setting a value for a property by path defined as array of strings, parent element comes first.
+
+Arguments:
+- obj: any - Object to set value in;
+- path: string[] - An array of strings, parent element comes first;
+- value: any - Value to set;
 
 Example:
 
 ```typescript
-// TODO
+setValueByPath({parent: {value: 1}}, ['parent', 'value'], 2); 
+// returns object {parent: {value: 2}}
 ```
 
 ### Function `castValueToType`
 
-<TODO>
+Casts value to type defined as string argument.
 
-Example:
+Arguments:
+- value: string - String value to cast;
+- type: string - Type to cast to as string of `number`, `boolean`, `object`, `string`, `null`, `delete`, `undefined`;
+- suppressExceptions: boolean (default - false) - If true, do not throw exceptions, just return value as string. Only works for `object` and `number` types;
+
+Examples:
 
 ```typescript
-// TODO
+castValueToType('1', 'number');
+// returns 1
+
+castValueToType('1-2', 'number');
+// throws an error
+
+castValueToType('1-2', 'number', true);
+// returns '1-2'
+
+castValueToType('1', 'boolean');
+// returns true
+
+castValueToType('2', 'boolean');
+// returns false
 ```
 
 ## CLI Wrappers
@@ -56,6 +85,7 @@ This script will parse json file and return value of the property defined by pat
 
 Usage: get-json-value <filename> <path>
 
+Arguments:
 - filename: any JSON file, example: `package.json`
 - path: a property key path within JSON file, example: `parent.child.value`
 
@@ -72,6 +102,7 @@ This script will parse json file and return value of the property defined by pat
 
 Usage: set-json-value.js <filename> <path> <value> [options[,options]]
 
+Arguments:
 - filename: any JSON file, example: `package.json`
 - path: a property key path within JSON file, example: `parent.child.value`
 - options:
