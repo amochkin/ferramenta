@@ -7,10 +7,16 @@
  */
 
 import * as fs from 'fs';
-import * as path from 'path';
 import { getValueByPath } from '../jsonValueByPath';
 
 const args = process.argv.slice(2);
+
+if (args.length == 0) {
+	console.log(`
+Usage: get-json-value <filename> <path>`);
+	process.exit(1);
+}
+
 const jsonFilename = args[0];
 const jsonPaths = args[1].split('.');
 

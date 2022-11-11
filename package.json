@@ -8,7 +8,7 @@
 		"set-json-value": "dist/bin/set-json-value.js"
 	},
 	"scripts": {
-		"build": "npm run clean && tsc -p tsconfig.json",
+		"build": "npm run clean && tsc -p tsconfig.json && chmod -R +x dist/bin/*.js",
 		"clean": "rimraf dist",
 		"prepare": "husky install",
 		"test": "jest --no-cache --runInBand",
