@@ -62,7 +62,8 @@ Usage: get-json-value <filename> <path>
 Example:
 
 ```shell
-get-json-value package.json version
+% get-json-value package.json version
+> 1.0.0
 ```
 
 ### set-json-value
@@ -85,5 +86,6 @@ Usage: set-json-value.js <filename> <path> <value> [options[,options]]
 Example:
 
 ```shell
-set-json-value.js package.json version 1.2.3 tabs
+% set-json-value.js package.json version 1.2.3 tabs
+> Complete
 ```
