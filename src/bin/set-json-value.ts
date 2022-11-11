@@ -39,19 +39,26 @@ const jsonOpts = args[3]?.split(',') || [];
 
 const jsonObj = JSON.parse(fs.readFileSync(jsonFilename).toString());
 
-const json = setValueByPath(
-	jsonObj,
-	jsonPaths,
-	castValueToType(
-		jsonValue,
-		jsonOpts.find((f) => isValidType(f)),
-		jsonOpts.includes('no-except'),
-	),
-);
-
 try {
-	fs.writeFileSync(jsonFilename, JSON.stringify(json, null, jsonOpts.includes('tabs') ? '\t' : ''));
+	const json = setValueByPath(
+		jsonObj,
+		jsonPaths,
+		castValueToType(
+			jsonValue,
+			jsonOpts.find((f) => isValidType(f)),
+			jsonOpts.includes('no-except'),
+		),
+	);
+
+	try {
+		fs.writeFileSync(jsonFilename, JSON.stringify(json, null, jsonOpts.includes('tabs') ? '\t' : ''));
+	} catch (e) {
+		console.error(`Error writing file ${jsonFilename}: ${e}`);
+		process.exit(3);
+	}
+
 	console.log('Complete');
 } catch (e) {
-	console.error('Error:', e);
+	console.error(`'Error setting value: ${jsonValue}'`, e);
+	process.exit(2);
 }

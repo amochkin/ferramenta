@@ -1,6 +1,6 @@
 {
 	"name": "@xorde-labs/ferramenta",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "NodeJS/Typescript collection of utility functions",
 	"license": "MIT",
 	"bin": {
