@@ -28,7 +28,7 @@
 	},
 	"main": "dist/cjs/index.js",
 	"module": "dist/esm/index.js",
-	"types": "dist/types/index.d.js",
+	"types": "dist/types/index.d.ts",
 	"devDependencies": {
 		"@types/jest": "^29.2.2",
 		"@typescript-eslint/eslint-plugin": "^5.42.1",
