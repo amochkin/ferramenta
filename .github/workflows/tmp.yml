@@ -26,7 +26,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Extract version from package.json
-        uses: amochkin/gha-json-value
+        uses: amochkin/gha-json-value@v1-rc6
         id: extract-version
         with:
           property: version
