@@ -25,14 +25,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Extract version from package.json
+        uses: amochkin/gha-json-value@v1-rc5
+        id: extract-version
+        with:
+          property: version
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.inputs.version_override != '' && github.event.inputs.version_override || github.ref }}
-          release_name: ${{ github.event.inputs.version_override != '' && github.event.inputs.version_override || github.ref }}
+          tag_name: ${{ github.event.inputs.version_override != '' && github.event.inputs.version_override || github.steps.extract-version.outputs.value || github.ref }}
+          release_name: v${{ github.event.inputs.version_override != '' && github.event.inputs.version_override || github.steps.extract-version.outputs.value || github.ref }}
           draft: ${{ github.event.inputs.is_draft }}
           prerelease: ${{ github.event.inputs.is_prerelease }}
 
