@@ -77,6 +77,27 @@ castValueToType('2', 'boolean');
 // returns false
 ```
 
+### Function `matchWildcard`
+
+Checks if string matches wildcard pattern.
+
+Arguments:
+- str: string - String to check;
+- pattern: string - Wildcard pattern to check against;
+
+Examples:
+
+```typescript
+matchWildcard('test', 'test');
+// returns true
+
+matchWildcard('test', '*test*');
+// returns true
+
+matchWildcard('test', 'test*test');
+// returns false
+```
+
 ## CLI Wrappers
 
 ### get-json-value
