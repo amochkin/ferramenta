@@ -98,6 +98,65 @@ matchWildcard('test', 'test*test');
 // returns false
 ```
 
+### Function `keyValue`
+
+Recursively dumps `obj` Object as comma-separated string of key=value pairs.
+
+Arguments:
+- obj: any - Object to dump;
+- ignoreProps: string[] - (Optional) Properties to ignore, array of strings;
+- maxKeys: number - (Optional) Maximum amount of keys to show; _...more[N]_ will be added to replace exceeding key element
+- maxDepth: number - (Optional) Maximum depth of recursion;
+
+Examples:
+
+```typescript
+keyValue({a: 1, b: 2, c: {d: 3, e: 4}}); // returns 'a=1,b=2,c={d=3,e=4}'
+
+keyValue({a: 1, b: 2, c: {d: 3, e: 4}}, ['b']); // returns 'a=1,c={d=3,e=4}'
+
+keyValue({a: 1, b: 2, c: {d: 3, e: 4}}, [], 2); // returns 'a=1,b=2,...more[1]'
+
+keyValue({a: 1, b: 2, c: {d: 3, e: 4}}, [], 2, 1); // returns 'a=1,b=2,...more[1]'
+```
+
+### Function `methodName`
+
+Returns the name of the current method (where call to this function was originated).
+
+Arguments:
+- suffix: string - (Optional) Suffix to add to method name;
+
+Examples:
+
+```typescript
+/**
+ * Class method example:
+ */
+class cls {
+  classMethod = (suffix?: string) => {
+    console.log(methodName()); // outputs 'cls.classMethod'
+  };
+  classMethodWithSuffix = () => {
+    console.log(methodName('-testSuffix')); // outputs 'cls.classMethodWithSuffix-testSuffix'
+  };
+}
+
+/**
+ * Arrow function example:
+ */
+const arrowFunction = (suffix?: string): void => {
+  console.log(methodName()); // outputs 'arrowFunction'
+};
+
+/**
+ * Normal function example:
+ */
+function normalFunction(): void {
+  console.log(methodName()); // outputs 'normalFunction'
+}
+```
+
 ## CLI Wrappers
 
 ### get-json-value
