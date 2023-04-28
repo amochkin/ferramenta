@@ -1,3 +1,9 @@
+---
+
+This repo was moved to https://github.com/xorders/ferramenta
+
+---
+
 # Ferramenta
 
 [![Release & Publish](https://github.com/xorde-labs/ferramenta/actions/workflows/publish.yml/badge.svg)](https://github.com/xorde-labs/ferramenta/actions/workflows/publish.yml)
